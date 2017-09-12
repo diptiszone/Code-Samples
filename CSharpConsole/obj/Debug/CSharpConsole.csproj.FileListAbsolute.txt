@@ -1,0 +1,6 @@
+C:\Code Samples\CSharpConsole\bin\Debug\CSharpConsole.exe.config
+C:\Code Samples\CSharpConsole\bin\Debug\CSharpConsole.exe
+C:\Code Samples\CSharpConsole\bin\Debug\CSharpConsole.pdb
+C:\Code Samples\CSharpConsole\obj\Debug\CSharpConsole.csprojResolveAssemblyReference.cache
+C:\Code Samples\CSharpConsole\obj\Debug\CSharpConsole.exe
+C:\Code Samples\CSharpConsole\obj\Debug\CSharpConsole.pdb
