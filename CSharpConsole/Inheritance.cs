@@ -43,15 +43,4 @@ namespace CSharpConsole
 
     }
 
-    class Executer
-    {
-        public static void Main()
-        {
-            //Rectangle rec = new Rectangle();
-            Shape rec = new Rectangle();
-            rec.SetHeight(40);
-            rec.SetWidth(80);
-            Console.WriteLine(rec.Area());//base called, on uncommening 1st line, derived called
-        }
-    }
 }
