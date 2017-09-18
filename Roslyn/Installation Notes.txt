@@ -1,0 +1,19 @@
+In Visual Studio 2012:
+Tried to install Microsoft.CodeAnalysis - this gave a compatibility error
+
+Opened up Visual Studio 2015
+
+Installation of package 'Microsoft.CodeAnalysis' from Nuget manager console succeeded 
+
+Subsequently installed these packages as and when required by the code
+Microsoft.Compilers.CSharp.Scripting 
+Install-Package Microsoft.CodeAnalysis.CSharp.Scripting
+Added Install-Package Microsoft.CodeAnalysis.CSharp.Scripting 
+
+
+To get System.Web.Http
+
+Install-Package Microsoft.AspNet.WebApi.Core
+
+To get System.Web.Http.SlefHost
+Install-Package Microsoft.AspNet.WebApi.SelfHost
