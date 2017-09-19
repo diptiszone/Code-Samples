@@ -1,0 +1,20 @@
+using System.Web.Http;
+public class TestController : ApiController
+{ 
+	public string Get() { 
+		return "Hello World";
+	} 
+ 
+	public string Get(int id) { 
+		return "Hello World "+id;
+	} 
+};
+
+public class NewController : ApiController
+{ 
+	public string Get() { 
+		return "Hello World from New Controller";
+	} 
+ 	
+};
+
