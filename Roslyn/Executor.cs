@@ -18,9 +18,6 @@ namespace CSharpConsole
         public static void Main()
         {
 
-            //SyntaxTree tree = CSharpSyntaxTree.ParseText();
-            //SyntaxTree tree = CSharpSyntaxTree.ParseText("",,;
-            
             var controllerpath = @"C:\Code Samples\Roslyn\Roslyn\controllers.txt";
             using (var stream = File.OpenRead(controllerpath))
             {
@@ -68,12 +65,14 @@ namespace CSharpConsole
                 }
             }
 
-            var address = "http://localhost/Codegen";
+            var address = "http://localhost/";
             var conf = new HttpSelfHostConfiguration(new Uri(address));
             conf.Routes.MapHttpRoute(name: "DefaultApi",
-            routeTemplate: "api/{controller}/{id}",
+            routeTemplate: "{servicename}/{controller}/{id}",
             defaults: new
             {
+                //servicename = "Codegen",
+                servicename = "Helloworld",
                 id = RouteParameter.Optional
             }
              );
