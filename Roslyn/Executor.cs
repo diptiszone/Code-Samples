@@ -4,7 +4,6 @@ using System.Web.Http;
 using System.Web.Http.SelfHost;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
 using Microsoft.CodeAnalysis.Emit;
 using System.Collections.Generic;
@@ -25,13 +24,24 @@ namespace CSharpConsole
 
                 string path = Path.Combine(@"C:\Code Samples\Roslyn\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll");
                 string webhttp = Path.GetFullPath(path);
+
+                string selfhostpath = Path.Combine(@"C:\Code Samples\Roslyn\packages\Microsoft.AspNet.WebApi.SelfHost.5.2.3\lib\net45\System.Web.Http.SelfHost.dll");
+                string codeanalysispath = Path.Combine(@"C:\Code Samples\Roslyn\packages\Microsoft.CodeAnalysis.Common.2.3.2\lib\netstandard1.3\Microsoft.CodeAnalysis.dll");
+                string codeanalysiscsharppath = Path.Combine(@"C:\Code Samples\Roslyn\packages\Microsoft.CodeAnalysis.CSharp.2.3.2\lib\netstandard1.3\Microsoft.CodeAnalysis.CSharp.dll");
+                string systempath = Path.Combine(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll");
+                string webnethttp = Path.Combine(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Net.Http.dll");
+
                 string assemblyName = "RoslynExample";
                 MetadataReference[] references = new MetadataReference[]
                 {
     MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
     MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location),
-    //MetadataReference.CreateFromFile(@"C:Program Files (x86)Microsoft ASP.NETASP.NET MVC 4AssembliesSystem.Web.Http.dll")
-    MetadataReference.CreateFromFile(webhttp)
+    MetadataReference.CreateFromFile(webhttp),
+    MetadataReference.CreateFromFile(selfhostpath),
+    MetadataReference.CreateFromFile(codeanalysispath),
+    MetadataReference.CreateFromFile(codeanalysiscsharppath),
+    MetadataReference.CreateFromFile(systempath),
+    MetadataReference.CreateFromFile(webnethttp)
                 };
 
                 CSharpCompilation compilation = CSharpCompilation.Create(
@@ -63,26 +73,26 @@ namespace CSharpConsole
                         Assembly assembly = Assembly.Load(ms.ToArray());
                     }
                 }
+               
             }
 
-            var address = "http://localhost/";
-            var conf = new HttpSelfHostConfiguration(new Uri(address));
-            conf.Routes.MapHttpRoute(name: "DefaultApi",
-            routeTemplate: "{servicename}/{controller}/{id}",
-            defaults: new
-            {
-                //servicename = "Codegen",
-                servicename = "Helloworld",
-                id = RouteParameter.Optional
-            }
-             );
+            //var address = "http://localhost/";
+            //var conf = new HttpSelfHostConfiguration(new Uri(address));
+            //conf.Routes.MapHttpRoute(name: "DefaultApi",
+            //routeTemplate: "{servicename}/{controller}/{id}",
+            //defaults: new
+            //{
+            //    //servicename = "Codegen",
+            //    servicename = "Helloworld",
+            //    id = RouteParameter.Optional
+            //}
+            // );
 
-            var server = new HttpSelfHostServer(conf);
-            server.OpenAsync().Wait();
+            //var server = new HttpSelfHostServer(conf);
+            //server.OpenAsync().Wait();
             Console.ReadKey();
 
         }
-
-
+        
     }
 }

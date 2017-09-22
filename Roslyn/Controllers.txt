@@ -1,20 +1,57 @@
+using System;
+using System.IO;
 using System.Web.Http;
-public class TestController : ApiController
-{ 
-	public string Get() { 
-		return "Hello World";
-	} 
- 
-	public string Get(int id) { 
-		return "Hello World "+id;
-	} 
-};
+using System.Web.Http.SelfHost;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using System.Linq;
+using Microsoft.CodeAnalysis.Emit;
+using System.Collections.Generic;
+using System.Reflection;
+using Microsoft.CodeAnalysis.Text;
 
-public class NewController : ApiController
-{ 
-	public string Get() { 
-		return "Hello World from New Controller";
-	} 
- 	
-};
+namespace CSharpConsoleTest
+{
+    public class RoslynSelfHost
+    {
+        public static void Main()
+        {
+            string address = "http://localhost/";
+            var conf = new HttpSelfHostConfiguration(new Uri(address));
+            conf.Routes.MapHttpRoute(name: "DefaultApi",
+            routeTemplate: "{servicename}/{controller}/{id}",
+            defaults: new
+            {
+                //servicename = "Codegen",
+                servicename = "Helloworld",
+                id = RouteParameter.Optional
+            }
+             );
 
+            var server = new HttpSelfHostServer(conf);
+            server.OpenAsync().Wait();
+            //Console.ReadKey();
+
+        }
+    }
+	
+	public class TestController : ApiController
+	{ 
+		public string Get() { 
+			return "Hello World";
+		} 
+	 
+		public string Get(int id) { 
+			return "Hello World "+id;
+		} 
+	};
+
+	public class NewController : ApiController
+	{ 
+		public string Get() { 
+			return "Hello World from New Controller";
+		} 
+		
+	};
+
+}
